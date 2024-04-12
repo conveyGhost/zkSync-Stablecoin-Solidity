@@ -2,7 +2,11 @@
 
 Modified from [Circle's Stablecoin repo](https://github.com/circlefin/stablecoin-evm).
 
-DON'T USE THIS REPO IN YOUR PRODUCT!!! IT'S JUST FOR DEVELOPMENT ON TESTNET!
+DON'T USE THIS REPO IN YOUR PRODUCT!!! IT'S JUST FOR DEVELOPMENT ON ZKSYNC ERA TESTNET!!!
+
+## Requirements
+
+- [Foundry-zkSync](https://github.com/matter-labs/foundry-zksync)
 
 ## Usage
 
@@ -50,6 +54,9 @@ $ forge script script/deploy/deploy-fiat-token.s.sol -vv --gas-estimate-multipli
 ```
 
 ### Problem: LLVM IR generator definition pass error
+
+> I have published an issue [here](https://github.com/matter-labs/foundry-zksync/issues/317)
+
 I found [USDC](https://explorer.zksync.io/address/0xF4d6912ED152600356ea991F027046F6d1740b8d#contract) ([Proxy contract](https://explorer.zksync.io/address/0x1d17CBcF0D6D143135aE902365D2E5e2A16538D4#contract)) deploys with this similar code successfully on zkSync Era, but I still can't figure out how to solve this problem.
 
 - Reproduce:
