@@ -1,66 +1,51 @@
-## Foundry
+## Minimal Circle's Stablecoin Smart Contracts on zkSync Era
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+Modified from [Circle's Stablecoin repo](https://github.com/circlefin/stablecoin-evm).
 
-Foundry consists of:
-
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
+DON'T USE THIS REPO IN YOUR PRODUCT!!! IT'S JUST FOR DEVELOPMENT ON TESTNET!
 
 ## Usage
 
 ### Build
 
 ```shell
+$ forge install
 $ forge build
+```
+
+### Compile
+
+```shell
+$ forge build --zksync
 ```
 
 ### Test
 
 ```shell
-$ forge test
+$ forge test --zksync
 ```
 
-### Format
+### Deployment
 
-```shell
-$ forge fmt
+1. Create a copy of the file `.env.example`, and name it `.env`. Fill in appropriate values in the `.env` file. This file must not be checked into the repository.
 ```
+$ cp .env.example .env
 
-### Gas Snapshots
-
-```shell
-$ forge snapshot
 ```
-
-### Anvil
-
-```shell
-$ anvil
+2. Create a `blacklist.remote.json` file and populate it with a list of addresses to be blacklisted. This file must not be checked into the repository.
 ```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+$ echo "[]" > blacklist.remote.json
 ```
-
-### Cast
-
-```shell
-$ cast <subcommand>
+3. Simulate a deployment by running the following command
 ```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+$ forge script script/deploy/deploy-fiat-token.s.sol:DeployFiatToken -vv --gas-estimate-multiplier 110  --rpc-url testnet --zksync
+```
+4. Validate that all transactions to be broadcasted are filled in with the correct values
+5. Deploy the contracts by running the following command
+```
+$ forge script script/deploy/deploy-fiat-token.s.sol -vv --gas-estimate-multiplier 110 --rpc-url testnet --broadcast --zksync
+```
+6. Verify the contracts on an Etherscan flavored block explorer by running the following command. Ensure that `ETHERSCAN_KEY` is set in the `.env` file.
+```
+$ forge script script/deploy/deploy-fiat-token.s.sol -vv --gas-estimate-multiplier 110 --rpc-url testnet --verify --resume --etherscan-api-key <ETHERSCAN_KEY> --zksync
 ```

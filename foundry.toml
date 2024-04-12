@@ -1,6 +1,28 @@
 [profile.default]
-src = "src"
-out = "out"
-libs = ["lib"]
+src = 'contracts'
+out = "artifacts"
+cache_path = "cache"
+script = "scripts"
+optimizer_runs = 10000000
+libs = [
+    "lib"
+]
+remappings = [
+    "forge-std/=lib/forge-std/src",
+    "@openzeppelin/=contracts/openzeppelin/",
+]
+fs_permissions = [
+    { access = "read-write", path = "blacklist.remote.json"},
+    { access = "read-write", path = "test.blacklist.remote.json"}
+] # https://book.getfoundry.sh/cheatcodes/fs
 
-# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
+[profile.zksync]
+src = 'contracts'
+libs = ["lib"]
+fallback_oz = true
+is_system = false
+mode = "3"
+
+[rpc_endpoints]
+testnet = "https://sepolia.era.zksync.dev"
+mainnet = "https://mainnet.era.zksync.io"
