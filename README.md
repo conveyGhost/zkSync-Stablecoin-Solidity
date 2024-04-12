@@ -59,33 +59,40 @@ $ forge build --zksync
 [⠒] Compiling...
 No files changed, compilation skipped
 
-┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│ Warning: Your code or one of its dependencies uses the 'extcodesize' instruction, which is       │
-│ usually needed in the following cases:                                                           │
-│   1. To detect whether an address belongs to a smart contract.                                   │
-│   2. To detect whether the deploy code execution has finished.                                   │
-│ zkSync Era comes with native account abstraction support (so accounts are smart contracts,       │
-│ including private-key controlled EOAs), and you should avoid differentiating between contracts   │
-│ and non-contract addresses.                                                                      │
-└──────────────────────────────────────────────────────────────────────────────────────────────────┘
---> src/openzeppelin/contracts/utils/Address.sol
-
-src/upgradeability/AdminUpgradeabilityProxy.sol:31:1: Warning: This contract has a payable fallback function, but no receive ether function. Consider adding a receive ether function.
-contract AdminUpgradeabilityProxy is UpgradeabilityProxy {
-^ (Relevant source part starts here and spans across multiple lines).
-src/upgradeability/Proxy.sol:35:5: The payable fallback function is defined here.
-    fallback() external payable {
-    ^ (Relevant source part starts here and spans across multiple lines).
-
-src/v1/FiatTokenProxy.sol:29:1: Warning: This contract has a payable fallback function, but no receive ether function. Consider adding a receive ether function.
-contract FiatTokenProxy is AdminUpgradeabilityProxy {
-^ (Relevant source part starts here and spans across multiple lines).
-src/upgradeability/Proxy.sol:35:5: The payable fallback function is defined here.
-    fallback() external payable {
-    ^ (Relevant source part starts here and spans across multiple lines).
-
 Error:
-Failed to compile with zksolc: Compilation failed with "Contract `contracts/v2/FiatTokenV2.sol:FiatTokenV2` compiling error: The contract `contracts/v2/FiatTokenV2.sol:FiatTokenV2` LLVM IR generator definition pass error: Library `contracts/util/SignatureChecker.sol:SignatureChecker` not found in the projectThe contract `contracts/v2/FiatTokenV2.sol:FiatTokenV2` LLVM IR generator definition pass error: Library `contracts/util/SignatureChecker.sol:SignatureChecker` not found in the project\n\n\nStack backtrace:\n   0: __ZN4llvm15SmallVectorBaseIyE8grow_podEPvmm\n   1: __ZN4llvm15SmallVectorBaseIyE8grow_podEPvmm\n   2: __mh_execute_header\n   3: __mh_execute_header\n   4: __mh_execute_header\n   5: __mh_execute_header\n   6: __mh_execute_header\n   7: __mh_execute_header\n   8: __ZN4llvm15SmallVectorBaseIyE8grow_podEPvmm\n   9: __mh_execute_header\n  10: __mh_execute_header\n  11: __mh_execute_header\n  12: __mh_execute_header\n  13: __mh_execute_header\n  14: __mh_execute_header\n  15: __mh_execute_header\n  16: __ZN4llvm15SmallVectorBaseIyE8grow_podEPvmm\n  17: __mh_execute_header\n  18: __mh_execute_header\n  19: __mh_execute_header\n  20: __ZN4llvm15SmallVectorBaseIyE8grow_podEPvmm\n  21: __pthread_deallocate\n". Using compiler: "/Users/chihaolu/.zksync/zksolc-macosx-arm64-v1.4.0", with args "/Users/chihaolu/Desktop/project/stablecoin-zkSync/contracts/v2/FiatTokenV2.sol" ["--standard-json", "--solc", "/Users/chihaolu/.svm/0.6.12/solc-0.6.12"]
+Failed to compile with zksolc: Compilation failed with "Contract `contracts/v2/FiatTokenV2.sol:FiatTokenV2` compiling error: 
+
+The contract `contracts/v2/FiatTokenV2.sol:FiatTokenV2` LLVM IR generator definition pass error: 
+
+Library `contracts/util/SignatureChecker.sol:SignatureChecker` not found in the project
+
+The contract `contracts/v2/FiatTokenV2.sol:FiatTokenV2` LLVM IR generator definition pass error: 
+
+Library `contracts/util/SignatureChecker.sol:SignatureChecker` not found in the project\n\n\nStack backtrace:
+    0: __ZN4llvm15SmallVectorBaseIyE8grow_podEPvmm
+    1: __ZN4llvm15SmallVectorBaseIyE8grow_podEPvmm
+    2: __mh_execute_header
+    3: __mh_execute_header
+    4: __mh_execute_header
+    5: __mh_execute_header
+    6: __mh_execute_header
+    7: __mh_execute_header
+    8: __ZN4llvm15SmallVectorBaseIyE8grow_podEPvmm
+    9: __mh_execute_header
+    10: __mh_execute_header
+    11: __mh_execute_header
+    12: __mh_execute_header
+    13: __mh_execute_header
+    14: __mh_execute_header
+    15: __mh_execute_header
+    16: __ZN4llvm15SmallVectorBaseIyE8grow_podEPvmm
+    17: __mh_execute_header
+    18: __mh_execute_header
+    19: __mh_execute_header
+    20: __ZN4llvm15SmallVectorBaseIyE8grow_podEPvmm
+    21: __pthread_deallocate\n". 
+
+Using compiler: "/Users/chihaolu/.zksync/zksolc-macosx-arm64-v1.4.0", with args "/Users/chihaolu/Desktop/project/stablecoin-zkSync/contracts/v2/FiatTokenV2.sol" ["--standard-json", "--solc", "/Users/chihaolu/.svm/0.6.12/solc-0.6.12"]
 ```
 
 - Solution: ❌
