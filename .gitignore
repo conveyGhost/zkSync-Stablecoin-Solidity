@@ -21,3 +21,5 @@ zkout/
 solc-v*
 *.log
 era_test_node
+.DS_Store
+artifacts/
