@@ -50,6 +50,7 @@ $ forge script script/deploy/deploy-fiat-token.s.sol -vv --gas-estimate-multipli
 ```
 
 ### Problem: LLVM IR generator definition pass error
+I found [USDC](https://explorer.zksync.io/address/0xF4d6912ED152600356ea991F027046F6d1740b8d#contract) ([Proxy contract](https://explorer.zksync.io/address/0x1d17CBcF0D6D143135aE902365D2E5e2A16538D4#contract)) deploys with this similar code successfully on zkSync Era, but I still can't figure out how to solve this problem.
 
 - Reproduce:
 ```
@@ -88,9 +89,6 @@ Failed to compile with zksolc: Compilation failed with "Contract `contracts/v2/F
 ```
 
 - Solution: ❌
-
-I found [USDC](https://explorer.zksync.io/address/0xF4d6912ED152600356ea991F027046F6d1740b8d#contract) deploys with this similar code successfully, but I still can't figure out how to solve this problem.
-
 - Some related issues:
     - `type(*).runtimeCode`, zkSync do not support it: [link](https://github.com/matter-labs/hardhat-zksync/issues/99)
     - `EXTCODECOPY`: [link](https://github.com/zkSync-Community-Hub/zksync-developers/discussions/86)
